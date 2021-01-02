@@ -91,7 +91,7 @@ const SwitchRoleModal = ({
                 id="id"
                 name="id"
                 onChange={handleChange}
-                // type="hidden"
+                type="hidden"
                 disabled
                 value={values.id}
               />

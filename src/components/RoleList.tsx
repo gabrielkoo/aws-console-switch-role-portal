@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Box,
   IconButton,
-  Link,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  Tooltip,
 } from '@material-ui/core';
 import {
   AccountCircle as AccountCircleIcon,
@@ -33,15 +33,11 @@ const HEADERS = ['Account', 'Role Name', 'Display Name', 'Color', 'Actions'];
 
 const RoleRow = ({ role, handleEdit, handleDelete }: RoleRowProps) => (
   <TableRow key={role.id}>
-    <TableCell>
-      <pre>{role.account}</pre>
-    </TableCell>
-    <TableCell>
-      <pre>{role.roleName}</pre>
-    </TableCell>
-    <TableCell>
-      <pre>{role.displayName}</pre>
-    </TableCell>
+    {['account', 'roleName', 'displayName'].map(key => (
+      <TableCell key={key}>
+        <pre>{role[key]}</pre>
+      </TableCell>
+    ))}
     <TableCell>
       <Box alignItems="center" display="flex">
         <Box>
@@ -54,23 +50,29 @@ const RoleRow = ({ role, handleEdit, handleDelete }: RoleRowProps) => (
     </TableCell>
     <TableCell>
       <Box alignItems="center" display="flex">
-        <Box>
-          <Link href={getAwsSwitchRoleUrl(role)}>
-            <IconButton>
-              <AccountCircleIcon />
-            </IconButton>
-          </Link>
-        </Box>
-        <Box>
+        <Tooltip title="Grant Role">
+          <IconButton
+            onClick={() =>
+              window.open(
+                getAwsSwitchRoleUrl(role),
+                '_blank',
+                'noopener noreferrer',
+              )
+            }
+          >
+            <AccountCircleIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Edit Role">
           <IconButton onClick={() => handleEdit(role.id)}>
             <EditIcon />
           </IconButton>
-        </Box>
-        <Box>
+        </Tooltip>
+        <Tooltip title="Delete Role">
           <IconButton onClick={() => handleDelete(role.id)}>
             <DeleteIcon />
           </IconButton>
-        </Box>
+        </Tooltip>
       </Box>
     </TableCell>
   </TableRow>
