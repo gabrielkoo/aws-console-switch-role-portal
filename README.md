@@ -48,7 +48,7 @@ The role list is stored inside localstorage and updated upon save.
 - [ ] Show validation error when there is existing record with the same `(account, roleName)`
 - [x] Account ID/Alias and role name validation (Reference: [account alias](https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateAccountAlias.html#API_CreateAccountAlias_RequestParameters) and [role name](https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html#API_CreateRole_ResponseElements))
 - [ ] Allow import/export from/to your local `~/.aws/config`
-- [ ] Allow setting the `redirectURI` querystring parameter
+- [x] Allow setting the `redirectURI` querystring parameter
 - [ ] Mobile responsiveness
 
 ## Disclaimer

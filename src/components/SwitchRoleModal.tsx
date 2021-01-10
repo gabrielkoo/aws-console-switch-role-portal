@@ -1,5 +1,6 @@
 import identity from 'lodash/identity';
 import pickBy from 'lodash/pickBy';
+import startCase from 'lodash/startCase';
 import React from 'react';
 import { useFormik } from 'formik';
 import {
@@ -12,10 +13,9 @@ import {
   FormControlLabel,
   FormLabel,
   Grid,
-  Input,
-  InputLabel,
   Radio,
   RadioGroup,
+  TextField,
 } from '@material-ui/core';
 import { FontDownload as FontDownloadIcon } from '@material-ui/icons';
 import { Role } from '../types';
@@ -45,6 +45,7 @@ const textFormFieldsList = [
     pattern: `[a-zA-Z0-9_+=,.@-]{1,64}`,
   },
   { name: 'displayName', label: 'Display Name (Optional)' },
+  /* TODO: change to `@material-ui/labs/AutoComplete` component */
   { name: 'redirectURI', label: 'Redirect URI (Optional)' },
 ];
 
@@ -55,7 +56,7 @@ const colorChoices = [
   'FAD791',
   'B7CA9D',
   '99BCE3',
-  '000000',
+  // '000000', /* Not offered because of AWS Input Bug"
 ];
 
 const SwitchRoleModal = ({
@@ -90,7 +91,7 @@ const SwitchRoleModal = ({
   return (
     <Dialog open={open} onClose={handleClose}>
       <form onSubmit={handleSubmit}>
-        <DialogTitle id="form-dialog-title">{formMode} Role Record</DialogTitle>
+        <DialogTitle id="form-dialog-title">{startCase(formMode)} Role Record</DialogTitle>
         <DialogContent>
           <Grid
             container
@@ -100,7 +101,7 @@ const SwitchRoleModal = ({
             alignItems="center"
           >
             <FormControl>
-              <Input
+              <TextField
                 id="id"
                 name="id"
                 onChange={handleChange}
@@ -110,15 +111,16 @@ const SwitchRoleModal = ({
               />
             </FormControl>
             {textFormFieldsList.map(
-              ({ name, label, required = false, pattern = '' }) => (
+              ({ name, label, required = false, pattern = '', ...restProps }) => (
                 <Grid item key={name}>
                   <FormControl style={{ width: MAX_WIDTH }}>
-                    <InputLabel htmlFor={name}>{label}</InputLabel>
-                    <Input
+                    <TextField
                       id={name}
                       name={name}
+                      label={label}
                       onChange={handleChange}
                       value={values[name]}
+                      variant="outlined"
                       inputProps={pickBy(
                         {
                           required,
@@ -129,6 +131,7 @@ const SwitchRoleModal = ({
                         },
                         identity,
                       )}
+                      {...restProps}
                     />
                   </FormControl>
                 </Grid>
