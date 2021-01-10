@@ -13,6 +13,7 @@ import {
   AccountCircle as AccountCircleIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
+  Link as LinkIcon,
 } from '@material-ui/icons';
 import { Role } from '../types';
 import { getAwsSwitchRoleUrl } from '../utils';
@@ -29,7 +30,14 @@ type RoleListProps = {
   handleDelete: any;
 };
 
-const HEADERS = ['Account', 'Role Name', 'Display Name', 'Color', 'Actions'];
+const HEADERS = [
+  'Account',
+  'Role Name',
+  'Display Name',
+  'Color',
+  'Redirect URI',
+  'Actions',
+];
 
 const RoleRow = ({ role, handleEdit, handleDelete }: RoleRowProps) => (
   <TableRow key={role.id}>
@@ -49,16 +57,27 @@ const RoleRow = ({ role, handleEdit, handleDelete }: RoleRowProps) => (
       </Box>
     </TableCell>
     <TableCell>
+      {role.redirectURI ? (
+        <Tooltip title={role.redirectURI}>
+          <IconButton
+            href={role.redirectURI}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkIcon />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        '-'
+      )}
+    </TableCell>
+    <TableCell>
       <Box alignItems="center" display="flex">
         <Tooltip title="Grant Role">
           <IconButton
-            onClick={() =>
-              window.open(
-                getAwsSwitchRoleUrl(role),
-                '_blank',
-                'noopener noreferrer',
-              )
-            }
+            href={getAwsSwitchRoleUrl(role)}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <AccountCircleIcon />
           </IconButton>

@@ -25,10 +25,21 @@ const Footer: React.FC = () => (
 
     <Box mt={2}>
       <Typography component="p">
-        Created by <Link href="https://gabrielkoo.com" children="Gabriel Koo" />
-        , hosted on <Link href="https://www.netlify.com/" children="Netlify" />
+        Report a problem / Contribute
+        <Link
+          href="https://github.com/gabrielkoo/aws-console-switch-role-portal"
+          children=" here"
+        />
       </Typography>
     </Box>
+
+    <Box mt={2}>
+      <Typography component="p">
+        Created by <Link href="https://gabrielkoo.com" children="Gabriel Koo" />
+        , hosted on <Link href="https://www.netlify.com/" children="Netlify" />.
+      </Typography>
+    </Box>
+
     <Box>
       <Typography component="p">
         {[

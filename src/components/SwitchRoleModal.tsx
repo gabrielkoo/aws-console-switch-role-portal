@@ -1,3 +1,5 @@
+import identity from 'lodash/identity';
+import pickBy from 'lodash/pickBy';
 import React from 'react';
 import { useFormik } from 'formik';
 import {
@@ -30,9 +32,20 @@ type SwitchRoleModalProps = {
 const MAX_WIDTH = 300;
 
 const textFormFieldsList = [
-  { name: 'account', label: 'Account' },
-  { name: 'roleName', label: 'Role Name' },
+  {
+    name: 'account',
+    label: 'Account',
+    required: true,
+    pattern: '([a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?|d{12})',
+  },
+  {
+    name: 'roleName',
+    label: 'Role Name',
+    required: true,
+    pattern: `[a-zA-Z0-9_+=,.@-]{1,64}`,
+  },
   { name: 'displayName', label: 'Display Name (Optional)' },
+  { name: 'redirectURI', label: 'Redirect URI (Optional)' },
 ];
 
 /* Colors copied from AWS */
@@ -86,7 +99,7 @@ const SwitchRoleModal = ({
             justify="center"
             alignItems="center"
           >
-            <FormControl style={{ width: MAX_WIDTH }}>
+            <FormControl>
               <Input
                 id="id"
                 name="id"
@@ -96,21 +109,31 @@ const SwitchRoleModal = ({
                 value={values.id}
               />
             </FormControl>
-            {textFormFieldsList.map(({ name, label }) => (
-              <Grid item key={name}>
-                <FormControl style={{ width: MAX_WIDTH }}>
-                  <InputLabel htmlFor={name}>{label}</InputLabel>
-                  <Input
-                    id={name}
-                    name={name}
-                    onChange={handleChange}
-                    value={values[name]}
-                    type="textarea"
-                    required
-                  />
-                </FormControl>
-              </Grid>
-            ))}
+            {textFormFieldsList.map(
+              ({ name, label, required = false, pattern = '' }) => (
+                <Grid item key={name}>
+                  <FormControl style={{ width: MAX_WIDTH }}>
+                    <InputLabel htmlFor={name}>{label}</InputLabel>
+                    <Input
+                      id={name}
+                      name={name}
+                      onChange={handleChange}
+                      value={values[name]}
+                      inputProps={pickBy(
+                        {
+                          required,
+                          pattern,
+                          title: pattern
+                            ? `It should match the RegExp ${pattern}`
+                            : '',
+                        },
+                        identity,
+                      )}
+                    />
+                  </FormControl>
+                </Grid>
+              ),
+            )}
             <Grid item>
               <FormControl component="fieldset" style={{ width: MAX_WIDTH }}>
                 <FormLabel htmlFor="name">Color</FormLabel>

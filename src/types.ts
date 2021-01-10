@@ -4,5 +4,7 @@ export type Role = {
   displayName: string;
   roleName: string;
   color: string;
+  redirectURI: string;
+  // For role[key] usages.
   [key: string]: string | undefined;
 };
