@@ -5,17 +5,11 @@ const getAwsSwitchRoleUrl = (role: Role): string => {
   const cleanedFields = Object.assign(
     {},
     ...Object.entries(restRoleFields)
-      .filter(([key, value]) => value === undefined || value === null)
-      .map(([key, value]) => ({
-        key: (
-          key === 'redirectURI'
-            ? encodeURIComponent(`${value}`)
-            : `${value}`
-        ),
-      })),
+      .filter(([key, value]) => !(value === undefined || value === null))
+      .map(([key, value]) => ({ [key]: value })),
   );
   const qs = new URLSearchParams(cleanedFields);
-  return `https://signin.aws.amazon.com/switchrole?${qs}`;
+  return `https://signin.aws.amazon.com/switchrole?${qs.toString()}`;
 };
 
 export { getAwsSwitchRoleUrl };
