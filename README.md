@@ -1,4 +1,8 @@
-# aws-console-switch-role-portal [![Netlify Status](https://api.netlify.com/api/v1/badges/7be8ecdf-a365-4326-ae39-9ba820718c4c/deploy-status)](https://app.netlify.com/sites/aws-switchrole/deploys)
+# aws-console-switch-role-portal
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7be8ecdf-a365-4326-ae39-9ba820718c4c/deploy-status)](https://app.netlify.com/sites/aws-switchrole/deploys)
+
+![CodeQL](https://github.com/gabrielkoo/aws-console-switch-role-portal/workflows/CodeQL/badge.svg)
 
 ## Live Site
 
