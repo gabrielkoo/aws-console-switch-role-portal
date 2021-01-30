@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssBaseline } from '@material-ui/core';
+import { Grid, CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import Footer from './components/Footer';
 import TopBar from './components/TopBar';
@@ -13,8 +13,20 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <TopBar />
-      <MainPage />
-      <Footer />
+      <Grid
+        container
+        direction="column"
+        justify="space-between"
+        style={{ minHeight: '100vh' }}
+        alignItems="center"
+      >
+        <Grid item style={{ flex: 1 }}>
+          <MainPage />
+        </Grid>
+        <Grid item>
+          <Footer />
+        </Grid>
+      </Grid>
     </MuiThemeProvider>
   );
 };
