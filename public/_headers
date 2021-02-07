@@ -1,6 +1,6 @@
 /
   Cache-Control: private, max-age=3600
-  Content-Security-Policy: "%CSP_PLACEHOLDER%"
+  Content-Security-Policy: %CSP_PLACEHOLDER%
   Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
