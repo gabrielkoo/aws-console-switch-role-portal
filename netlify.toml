@@ -1,6 +1,10 @@
 [build]
   publish = "build/"
 
-  command = "INLINE_RUNTIME_CHUNK=false GENERATE_SOURCEMAP=false yarn build"
+  command = "INLINE_RUNTIME_CHUNK=false yarn build"
 
   environment = { NODE_VERSION = '12' }
+
+[build.processing.js]
+  bundle = false
+  minify = false
