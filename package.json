@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "prod": "yarn build && yarn serve -s build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +40,12 @@
     "@types/node": "^14.14.17",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/uuid": "^8.3.0"
+    "@types/uuid": "^8.3.0",
+    "serve": "^11.3.2"
+  },
+  "resolutions": {
+    "immer": "^8.0.1",
+    "node-notifier": "^8.0.1",
+    "object-path": "^0.11.5"
   }
 }
