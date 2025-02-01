@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7be8ecdf-a365-4326-ae39-9ba820718c4c/deploy-status)](https://app.netlify.com/sites/aws-switchrole/deploys)
 
-![CodeQL](https://github.com/gabrielkoo/aws-console-switch-role-portal/workflows/CodeQL/badge.svg)
+*[Update 2025-01]* AWS Revamped the switch portal page so that the colors in this repo are no longer correct, as well as the `redirectUri` is no longer supported. I recommend you switch to usinf AWS Identity Center with my other project instead:  <https://iamidentitycenterroles.us-east-1.com/>
 
 ## Live Site
 
